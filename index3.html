@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Januar Web Brebes | Bio Link</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Jasa pembuatan website UMKM, CV ATS profesional, dan desain promosi di Brebes.">
+  <meta name="theme-color" content="#F8FAFC">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons (Premium Professional Icons) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ================================================
+       VARIABLES & THEME (PRO DEVELOPER DARK MODE)
+    ================================================ */
+    :root {
+      --bg-page:      #0B1121; /* Dark tech background */
+      --bg-card:      rgba(30, 41, 59, 0.7); /* Glass slate */
+      --text-main:    #F8FAFC;
+      --text-muted:   #94A3B8;
+      
+      --blue:         #38BDF8; /* Tech Neon Blue */
+      --blue-light:   rgba(56, 189, 248, 0.15);
+      --blue-border:  rgba(56, 189, 248, 0.3);
+      
+      --green:        #34D399;
+      --purple:       #A78BFA;
+      --pink:         #F472B6;
+      --orange:       #FB923C;
+      --gold:         #FBBF24;
+
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --r-btn:        16px;
+      --r-modal:      24px;
+      --tr:           all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Background Ambient Orbs */
+    .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: float 10s ease-in-out infinite; }
+    .orb-1 { width: 300px; height: 300px; background: #1D4ED8; top: -100px; left: -50px; }
+    .orb-2 { width: 250px; height: 250px; background: #6D28D9; top: 40%; right: -100px; animation-delay: 2s; }
+    @keyframes float { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-20px) scale(1.05);} }
+
+    /* Main Container */
+    .bio-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px; /* Lebar maksimal layaknya HP */
+      padding: 40px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-wrap { text-align: center; margin-bottom: 32px; width: 100%; }
+    .avatar {
+      width: 100px; height: 100px; margin: 0 auto 16px;
+      border-radius: 50%; padding: 4px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      position: relative;
+    }
+    .avatar img {
+      width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--bg-page); background: var(--bg-page);
+    }
+    .verified-badge {
+      position: absolute; bottom: 4px; right: 4px;
+      background: var(--blue); color: #fff;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--bg-page); font-size: 14px;
+    }
+    .title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem; font-weight: 800; color: var(--text-main);
+      margin-bottom: 6px; letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 500;
+    }
+    .location {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; font-weight: 600; color: var(--blue);
+      background: var(--blue-light); padding: 6px 12px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    
+    /* Social Row */
+    .social-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.05); color: var(--text-main); font-size: 1.2rem;
+      border: 1px solid var(--glass-border); backdrop-filter: blur(4px);
+      transition: var(--tr); cursor: pointer; text-decoration: none;
+    }
+    .social-icon:hover { transform: translateY(-3px); border-color: var(--blue); color: var(--blue); box-shadow: 0 0 15px var(--blue-light); background: rgba(255, 255, 255, 0.1); }
+
+    .link-group { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+    
+    .link-btn {
+      width: 100%; display: flex; align-items: center;
+      padding: 12px 16px; border-radius: var(--r-btn);
+      background: var(--bg-card); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      text-decoration: none; color: var(--text-main);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: var(--tr); position: relative; overflow: hidden;
+      cursor: pointer; text-align: left;
+    }
+    .link-btn:hover {
+      transform: translateY(-2px); border-color: var(--blue-border);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2), 0 0 15px var(--blue-light);
+    }
+    
+    .link-icon {
+      width: 44px; height: 44px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0; margin-right: 14px;
+    }
+    /* Icon Colors (Pro Tech) */
+    .ic-wa { background: rgba(52, 211, 153, 0.15); color: var(--green); border: 1px solid rgba(52, 211, 153, 0.2); }
+    .ic-price { background: rgba(56, 189, 248, 0.15); color: var(--blue); border: 1px solid rgba(56, 189, 248, 0.2); }
+    .ic-web { background: rgba(167, 139, 250, 0.15); color: var(--purple); border: 1px solid rgba(167, 139, 250, 0.2); }
+    .ic-cv { background: rgba(244, 114, 182, 0.15); color: var(--pink); border: 1px solid rgba(244, 114, 182, 0.2); }
+    .ic-design { background: rgba(251, 146, 60, 0.15); color: var(--orange); border: 1px solid rgba(251, 146, 60, 0.2); }
+    .ic-testi { background: rgba(251, 191, 36, 0.15); color: var(--gold); border: 1px solid rgba(251, 191, 36, 0.2); }
+
+    .link-text { flex: 1; }
+    .link-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: 2px; }
+    .link-desc { font-size: 0.75rem; color: var(--text-muted); }
+    .link-arrow { font-size: 1.1rem; color: var(--text-muted); transition: var(--tr); }
+    .link-btn:hover .link-arrow { color: var(--blue); transform: translateX(3px); }
+
+    /* Special WhatsApp Highlight */
+    .link-btn.highlight {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      border: 1px solid #10B981; color: #fff;
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+    }
+    .link-btn.highlight .link-icon { background: rgba(255,255,255,0.15); color: #fff; border: none; }
+    .link-btn.highlight .link-desc { color: rgba(255,255,255,0.8); }
+    .link-btn.highlight .link-arrow { color: #fff; }
+    .link-btn.highlight:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4); border-color: #34D399; }
+
+    /* Footer */
+    .bio-footer { margin-top: 40px; text-align: center; }
+    .bio-footer p { font-size: 0.75rem; color: var(--text-muted); }
+    .bio-footer b { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text-main); }
+
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+      opacity: 0; visibility: hidden; transition: var(--tr);
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    
+    .bottom-sheet {
+      background: #0F172A; width: 100%; max-width: 480px;
+      max-height: 85vh; overflow-y: auto;
+      border-radius: var(--r-modal) var(--r-modal) 0 0;
+      padding: 24px 20px 40px; border-top: 1px solid var(--glass-border);
+      transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .modal-overlay.active .bottom-sheet { transform: translateY(0); }
+    
+    .sheet-drag { width: 40px; height: 5px; background: #334155; border-radius: 10px; margin: 0 auto 20px; }
+    .sheet-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .sheet-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; gap: 8px; color: var(--text-main); }
+    .sheet-close { font-size: 1.5rem; color: var(--text-muted); cursor: pointer; background: none; border: none; padding: 4px; transition: var(--tr); }
+    .sheet-close:hover { color: #fff; }
+    
+    /* Pricing Cards */
+    .price-card {
+      border: 1px solid var(--glass-border); border-radius: 16px;
+      padding: 16px; margin-bottom: 12px; background: rgba(255, 255, 255, 0.03);
+    }
+    .price-card.premium { border-color: var(--blue-border); background: var(--blue-light); }
+    .pc-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .pc-name { font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; color: var(--text-main); }
+    .pc-badge { font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 20px; background: var(--blue); color: #0B1121; }
+    .pc-price { font-size: 1.4rem; font-weight: 800; color: var(--blue); margin-bottom: 12px; }
+    .pc-feat { list-style: none; margin-bottom: 16px; }
+    .pc-feat li { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .pc-feat li i { color: var(--green); font-size: 1rem; }
+    .pc-btn {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      width: 100%; padding: 10px; border-radius: 12px;
+      background: transparent; border: 1px solid var(--blue); color: var(--blue);
+      font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: var(--tr);
+    }
+    .pc-btn:hover { background: var(--blue); color: #0B1121; }
+    
+    /* Testi Cards */
+    .testi-card { border: 1px solid var(--glass-border); border-radius: 16px; padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,0.03); }
+    .t-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 8px; }
+    .t-text { font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-bottom: 12px; line-height: 1.6; }
+    .t-user { display: flex; align-items: center; gap: 10px; }
+    .t-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; }
+    .t-name { font-weight: 700; font-size: 0.85rem; color: var(--text-main); }
+    .t-role { font-size: 0.7rem; color: var(--text-muted); }
+
+    .gallery-lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: var(--tr);
+    }
+    .gallery-lightbox.active { opacity: 1; visibility: visible; }
+    
+    .g-close { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2rem; background: none; border: none; cursor: pointer; }
+    .g-title-bar { position: absolute; top: 24px; left: 24px; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .g-title { font-weight: 700; font-size: 1.1rem; }
+    .g-count { font-size: 0.8rem; color: #94A3B8; }
+    
+    .g-img-wrap { position: relative; width: 90%; max-width: 400px; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .g-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s; }
+    
+    .g-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; cursor: pointer; backdrop-filter: blur(4px); transition: var(--tr);
+    }
+    .g-nav:hover { background: var(--blue); border-color: var(--blue); }
+    .g-prev { left: 10px; } .g-next { right: 10px; }
+    
+    .g-thumbs { display: flex; gap: 8px; margin-top: 20px; max-width: 90%; overflow-x: auto; padding-bottom: 10px; }
+    .g-thumb { width: 50px; height: 66px; border-radius: 8px; object-fit: cover; cursor: pointer; opacity: 0.4; border: 2px solid transparent; transition: var(--tr); }
+    .g-thumb.active { opacity: 1; border-color: var(--blue-border); transform: translateY(-3px); }
+  </style>
+</head>
+<body>
+
+<!-- Ambient Background -->
+<div class="ambient">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<main class="bio-container">
+  
+  <!-- PROFILE HEADER -->
+  <header class="profile-wrap">
+    <div class="avatar">
+      <!-- GANTI LINK GAMBAR DI BAWAH INI DENGAN FOTO PROFIL ASLI ANDA -->
+      <img src="image/poto.webp" alt="Januar Web Brebes">
+      <div class="verified-badge" title="Verified Professional"><i class="ph-bold ph-check"></i></div>
+    </div>
+    <h1 class="title">Januar Web Brebes</h1>
+    <p class="subtitle">Jasa CV ATS Profesional & Website
+
+Melayani:
+CV ATS,
+Surat Lamaran,
+Foto Formal AI,
+Poster Produk,
+Website Usaha,
+Landing Page,
+Link Bio Premium,
+
+CV modern, rapi, profesional, siap kirim HRD.
+Fast respon & proses cepat.
+</p>
+    
+    <div class="location">
+      <i class="ph-fill ph-map-pin"></i> Jl. Raya Jatibarang - Kemiriamba, Brebes
+    </div>
+
+    <div class="social-row">
+      <a href="https://instagram.com/ericco89" class="social-icon" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
+      <a href="https://tiktok.com/@jiwacreator" class="social-icon" target="_blank"><i class="ph-fill ph-tiktok-logo"></i></a>
+      <a href="mailto:emailanda@gmail.com" class="social-icon" target="_blank"><i class="ph-fill ph-envelope-simple"></i></a>
+    </div>
+  </header>
+
+  <!-- LINK STACK -->
+  <section class="link-group">
+    
+    <!-- WhatsApp Highlight -->
+    <a href="https://wa.me/6285641612901?text=Halo%20Januar%20Web%2C%20saya%20mau%20konsultasi." class="link-btn highlight" target="_blank">
+      <div class="link-icon"><i class="ph-fill ph-whatsapp-logo"></i></div>
+      <div class="link-text">
+        <span class="link-title">Konsultasi via WhatsApp</span>
+        <span class="link-desc">Fast respon & konsultasi GRATIS</span>
+      </div>
+      <i class="ph-bold ph-caret-right link-arrow"></i>
+    </a>
+
+    <!-- Pricelist (Membuka Modal) -->
+    <button class="link-btn" onclick="openSheet('sheet-pricing')">
+      <div class="link-icon ic-price"><i class="ph-fill ph-tag"></i></div>
+      <div class="link-text">
+        <span class="link-title">Daftar Paket & Harga</span>
+        <span class="link-desc">Harga transparan mulai Rp 15K</span>
+      </div>
+      <i class="ph-bold ph-caret-right link-arrow"></i>
+    </button>
+
+    <!-- Portfolio Website (Membuka Modal) -->
+    <button class="link-btn" onclick="openSheet('sheet-website')">
+      <div class="link-icon ic-web"><i class="ph-fill ph-globe-hemisphere-west"></i></div>
+      <div class="link-text">
+        <span class="link-title">Lihat Portfolio Website</span>
+        <span class="link-desc">Hasil jadi web UMKM klien kami</span>
+      </div>
+      <i class="ph-bold ph-caret-right link-arrow"></i>
+    </button>
+
+    <!-- Portfolio CV (Buka Galeri) -->
+    <button class="link-btn" onclick="openGallery('cv')">
+      <div class="link-icon ic-cv"><i class="ph-fill ph-file-text"></i></div>
+      <div class="link-text">
+        <span class="link-title">Album Desain CV ATS</span>
+        <span class="link-desc">Desain profesional lolos HRD</span>
+      </div>
+      <i class="ph-bold ph-image link-arrow"></i>
+    </button>
+
+    <!-- Portfolio Desain Poster (Buka Galeri) -->
+    <button class="link-btn" onclick="openGallery('poster')">
+      <div class="link-icon ic-design"><i class="ph-fill ph-palette"></i></div>
+      <div class="link-text">
+        <span class="link-title">Album Desain Poster</span>
+        <span class="link-desc">Desain promosi & sosial media</span>
+      </div>
+      <i class="ph-bold ph-image link-arrow"></i>
+    </button>
+
+    <!-- Testimoni (Membuka Modal) -->
+    <button class="link-btn" onclick="openSheet('sheet-testi')">
+      <div class="link-icon ic-testi"><i class="ph-fill ph-star"></i></div>
+      <div class="link-text">
+        <span class="link-title">Testimoni Klien</span>
+        <span class="link-desc">Apa kata mereka yang sudah order?</span>
+      </div>
+      <i class="ph-bold ph-caret-right link-arrow"></i>
+    </button>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bio-footer">
+    <p>&copy; 2025 <b>Januar Web</b>.</p>
+    <p>Dibuat dengan ❤️ untuk kemajuan Gen Z & UMKM.</p>
+  </footer>
+
+</main>
+
+<!-- ==========================================
+     MODALS (BOTTOM SHEETS)
+=========================================== -->
+
+<!-- PRICING SHEET -->
+<div class="modal-overlay" id="sheet-pricing" onclick="closeSheet(event, 'sheet-pricing')">
+  <div class="bottom-sheet" onclick="event.stopPropagation()">
+    <div class="sheet-drag"></div>
+    <div class="sheet-header">
+      <h3 class="sheet-title"><i class="ph-fill ph-tag" style="color:var(--blue)"></i> Paket Harga</h3>
+      <button class="sheet-close" onclick="closeSheetBtn('sheet-pricing')"><i class="ph-bold ph-x"></i></button>
+    </div>
+    
+    <div class="price-card">
+      <div class="pc-head">
+        <span class="pc-name">Desain Poster</span>
+      </div>
+      <div class="pc-price">Rp 15.000<span style="font-size:0.7rem;color:var(--text-muted);font-weight:500">/desain</span></div>
+      <ul class="pc-feat">
+        <li><i class="ph-bold ph-check"></i> Desain estetik kekinian</li>
+        <li><i class="ph-bold ph-check"></i> Resolusi tinggi siap cetak</li>
+        <li><i class="ph-bold ph-check"></i> Gratis revisi 1x</li>
+      </ul>
+      <button class="pc-btn" onclick="orderWA('Desain Poster (Rp 15K)')">Order Poster</button>
+    </div>
+
+    <div class="price-card premium">
+      <div class="pc-head">
+        <span class="pc-name">Bikin CV ATS</span>
+        <span class="pc-badge">Best Seller</span>
+      </div>
+      <div class="pc-price">Rp 25.000</div>
+      <ul class="pc-feat">
+        <li><i class="ph-bold ph-check"></i> Format standar ATS lolos HRD</li>
+        <li><i class="ph-bold ph-check"></i> Desain bersih & profesional</li>
+        <li><i class="ph-bold ph-check"></i> Bebas revisi 2x</li>
+      </ul>
+      <button class="pc-btn" onclick="orderWA('CV ATS Profesional (Rp 25K)')" style="background:var(--blue);color:#0B1121;border:none;">Order CV ATS</button>
+    </div>
+
+    <div class="price-card">
+      <div class="pc-head">
+        <span class="pc-name">Website Bisnis / UMKM</span>
+      </div>
+      <div class="pc-price">Mulai Rp 500K</div>
+      <ul class="pc-feat">
+        <li><i class="ph-bold ph-check"></i> Desain web modern & responsif</li>
+        <li><i class="ph-bold ph-check"></i> Terintegrasi tombol Chat WA</li>
+        <li><i class="ph-bold ph-check"></i> Domain & Hosting*</li>
+      </ul>
+      <button class="pc-btn" onclick="orderWA('Pembuatan Website (mulai Rp 500K)')">Konsultasi Web</button>
+    </div>
+  </div>
+</div>
+
+<!-- WEBSITE PORTFOLIO SHEET (DAFTAR BANYAK LINK WEB) -->
+<div class="modal-overlay" id="sheet-website" onclick="closeSheet(event, 'sheet-website')">
+  <div class="bottom-sheet" onclick="event.stopPropagation()">
+    <div class="sheet-drag"></div>
+    <div class="sheet-header">
+      <h3 class="sheet-title"><i class="ph-fill ph-globe-hemisphere-west" style="color:var(--purple)"></i> Daftar Website Klien</h3>
+      <button class="sheet-close" onclick="closeSheetBtn('sheet-website')"><i class="ph-bold ph-x"></i></button>
+    </div>
+
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Pilih dan klik untuk mengunjungi website hasil buatan kami:</p>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      
+      <!-- Link Website 1 -->
+      <a href="https://januarwebbrebes.netlify.app/" class="link-btn" target="_blank" style="padding: 16px;">
+        <div class="link-text">
+          <span class="link-title" style="color: var(--blue);">Toko Online Batik Brebes</span>
+          <span class="link-desc">Website E-commerce & Katalog</span>
+        </div>
+        <i class="ph-bold ph-arrow-up-right link-arrow" style="font-size:1.3rem;"></i>
+      </a>
+
+      <!-- Link Website 2 -->
+      <a href="https://link-website-2.com" class="link-btn" target="_blank" style="padding: 16px;">
+        <div class="link-text">
+          <span class="link-title" style="color: var(--green);">Company Profile CV Karya</span>
+          <span class="link-desc">Website Profil Perusahaan</span>
+        </div>
+        <i class="ph-bold ph-arrow-up-right link-arrow" style="font-size:1.3rem;"></i>
+      </a>
+
+      <!-- Link Website 3 -->
+      <a href="https://link-website-3.com" class="link-btn" target="_blank" style="padding: 16px;">
+        <div class="link-text">
+          <span class="link-title" style="color: var(--pink);">Landing Page Kuliner</span>
+          <span class="link-desc">Halaman Promosi Khusus Makanan</span>
+        </div>
+        <i class="ph-bold ph-arrow-up-right link-arrow" style="font-size:1.3rem;"></i>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONI SHEET -->
+<div class="modal-overlay" id="sheet-testi" onclick="closeSheet(event, 'sheet-testi')">
+  <div class="bottom-sheet" onclick="event.stopPropagation()">
+    <div class="sheet-drag"></div>
+    <div class="sheet-header">
+      <h3 class="sheet-title"><i class="ph-fill ph-star" style="color:var(--gold)"></i> Ulasan Klien</h3>
+      <button class="sheet-close" onclick="closeSheetBtn('sheet-testi')"><i class="ph-bold ph-x"></i></button>
+    </div>
+
+    <div class="testi-card">
+      <div class="t-stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+      <p class="t-text">"Sumpah bagus banget! Website jualan aku jadi keliatan mahal. Pelanggan makin percaya transfer karena webnya profesional. Recomended pokoknya."</p>
+      <div class="t-user">
+        <div class="t-av" style="background:rgba(244, 114, 182, 0.15);color:var(--pink);border:1px solid rgba(244, 114, 182, 0.2);">SR</div>
+        <div><div class="t-name">Sari Rahayu</div><div class="t-role">Owner UMKM Fashion</div></div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="t-stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+      <p class="t-text">"Bikin CV disini pengerjaannya cepet dan desainnya rapi banget. Alhamdulillah seminggu dipake langsung dapet panggilan interview!"</p>
+      <div class="t-user">
+        <div class="t-av" style="background:rgba(56, 189, 248, 0.15);color:var(--blue);border:1px solid rgba(56, 189, 248, 0.2);">BD</div>
+        <div><div class="t-name">Budi Darmawan</div><div class="t-role">Fresh Graduate</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY LIGHTBOX -->
+<div class="gallery-lightbox" id="gallery-box">
+  <div class="g-title-bar">
+    <div class="g-title" id="gTitle">Judul</div>
+    <div class="g-count" id="gCount">1 / 3</div>
+  </div>
+  <button class="g-close" onclick="closeGallery()"><i class="ph-bold ph-x"></i></button>
+  
+  <div class="g-img-wrap">
+    <button class="g-nav g-prev" onclick="navGal(-1)"><i class="ph-bold ph-caret-left"></i></button>
+    <img id="gImg" src="" class="g-img" alt="Portfolio Image">
+    <button class="g-nav g-next" onclick="navGal(1)"><i class="ph-bold ph-caret-right"></i></button>
+  </div>
+  
+  <div class="g-thumbs" id="gThumbs"></div>
+</div>
+
+<script>
+  // --- BOTTOM SHEET LOGIC ---
+  function openSheet(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSheet(e, id) {
+    if (e.target === e.currentTarget) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  function closeSheetBtn(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // --- WHATSAPP ORDER ---
+  function orderWA(product) {
+    const msg = encodeURIComponent(`Halo Januar Web Brebes, saya tertarik untuk order / konsultasi tentang: ${product}. Boleh info lebih detail?`);
+    window.open(`https://wa.me/6285641612901?text=${msg}`, '_blank');
+  }
+
+  // --- GALLERY LOGIC ---
+  const galData = {
+    cv: [
+      { src: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&h=800&q=80', title: 'CV ATS Professional' },
+      { src: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&h=800&q=80', title: 'CV Clean Modern' },
+      { src: 'https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&w=600&h=800&q=80', title: 'CV Standard HRD' }
+    ],
+    poster: [
+      { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=600&h=800&q=80', title: 'Poster Produk Kuliner' },
+      { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&h=800&q=80', title: 'Poster Diskon Toko' },
+      { src: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=600&h=800&q=80', title: 'Flyer Event Spesial' }
+    ]
+  };
+
+  let curGal = [];
+  let curIdx = 0;
+  
+  const gBox = document.getElementById('gallery-box');
+  const gImg = document.getElementById('gImg');
+  const gTitle = document.getElementById('gTitle');
+  const gCount = document.getElementById('gCount');
+  const gThumbs = document.getElementById('gThumbs');
+
+  function openGallery(type) {
+    curGal = galData[type];
+    curIdx = 0;
+    renderGallery();
+    gBox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery() {
+    gBox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function navGal(step) {
+    curIdx += step;
+    if(curIdx < 0) curIdx = curGal.length - 1;
+    if(curIdx >= curGal.length) curIdx = 0;
+    renderGallery();
+  }
+  
+  function setGal(idx) {
+    curIdx = idx;
+    renderGallery();
+  }
+
+  function renderGallery() {
+    const item = curGal[curIdx];
+    gImg.style.opacity = 0;
+    setTimeout(() => {
+      gImg.src = item.src;
+      gImg.style.opacity = 1;
+    }, 150);
+    gTitle.textContent = item.title;
+    gCount.textContent = `${curIdx + 1} / ${curGal.length}`;
+    
+    gThumbs.innerHTML = curGal.map((img, i) => `
+      <img src="${img.src}" class="g-thumb ${i === curIdx ? 'active' : ''}" onclick="setGal(${i})" alt="Thumb">
+    `).join('');
+  }
+</script>
+
+</body>
+</html>
