@@ -294,7 +294,7 @@ Cocok untuk pelamar kerja, UMKM, freelancer, dan bisnis online.
     <div class="social-row">
       <a href="https://instagram.com/ericco89" class="social-icon" target="_blank"><i class="ph-fill ph-instagram-logo"></i></a>
       <a href="https://tiktok.com/@jiwacreator" class="social-icon" target="_blank"><i class="ph-fill ph-tiktok-logo"></i></a>
-      <a href="mailto:emailanda@gmail.com" class="social-icon" target="_blank"><i class="ph-fill ph-envelope-simple"></i></a>
+      <a href="mailto:icco891@gmail.com" class="social-icon" target="_blank"><i class="ph-fill ph-envelope-simple"></i></a>
     </div>
   </header>
 
@@ -440,7 +440,7 @@ Cocok untuk pelamar kerja, UMKM, freelancer, dan bisnis online.
     <div style="display: flex; flex-direction: column; gap: 12px;">
       
       <!-- Link Website 1 -->
-      <a href="" class="link-btn" target="_blank" style="padding: 16px;">
+      <a href="https://januarwebbrebes.netlify.app/" class="link-btn" target="_blank" style="padding: 16px;">
         <div class="link-text">
           <span class="link-title" style="color: var(--blue);">Toko Online Batik Brebes</span>
           <span class="link-desc">Website E-commerce & Katalog</span>
@@ -494,6 +494,25 @@ Cocok untuk pelamar kerja, UMKM, freelancer, dan bisnis online.
       <div class="t-user">
         <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&q=80" alt="Budi" class="t-av" style="border: 2px solid rgba(56, 189, 248, 0.5);">
         <div><div class="t-name">Budi Darmawan</div><div class="t-role">Fresh Graduate</div></div>
+      </div>
+    </div>
+
+    <!-- Tambahan Galeri Bukti Testimoni -->
+    <div style="margin-top: 24px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+      <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; color: var(--text-main); margin-bottom: 8px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+        <i class="ph-fill ph-image" style="color: var(--blue);"></i> Bukti Chat & Screenshot
+      </h4>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 14px;">Klik gambar untuk memperbesar bukti percakapan / transfer asli dari klien.</p>
+      
+      <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none;">
+        <!-- Thumbnail Bukti 1 -->
+        <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=200&h=300&q=80" alt="Bukti 1" style="width: 85px; height: 110px; object-fit: cover; border-radius: 12px; cursor: pointer; border: 1px solid var(--glass-border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="openGallery('testimoni', 0)">
+        
+        <!-- Thumbnail Bukti 2 -->
+        <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=200&h=300&q=80" alt="Bukti 2" style="width: 85px; height: 110px; object-fit: cover; border-radius: 12px; cursor: pointer; border: 1px solid var(--glass-border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="openGallery('testimoni', 1)">
+        
+        <!-- Thumbnail Bukti 3 -->
+        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=200&h=300&q=80" alt="Bukti 3" style="width: 85px; height: 110px; object-fit: cover; border-radius: 12px; cursor: pointer; border: 1px solid var(--glass-border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="openGallery('testimoni', 2)">
       </div>
     </div>
   </div>
@@ -550,6 +569,11 @@ Cocok untuk pelamar kerja, UMKM, freelancer, dan bisnis online.
       { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=600&h=800&q=80', title: 'Poster Produk Kuliner' },
       { src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=600&h=800&q=80', title: 'Poster Diskon Toko' },
       { src: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=600&h=800&q=80', title: 'Flyer Event Spesial' }
+    ],
+    testimoni: [
+      { src: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=600&h=800&q=80', title: 'Bukti Chat WA Klien' },
+      { src: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&w=600&h=800&q=80', title: 'Bukti Transfer' },
+      { src: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=600&h=800&q=80', title: 'Review & Kepuasan' }
     ]
   };
 
@@ -562,9 +586,9 @@ Cocok untuk pelamar kerja, UMKM, freelancer, dan bisnis online.
   const gCount = document.getElementById('gCount');
   const gThumbs = document.getElementById('gThumbs');
 
-  function openGallery(type) {
+  function openGallery(type, startIdx = 0) {
     curGal = galData[type];
-    curIdx = 0;
+    curIdx = startIdx;
     renderGallery();
     gBox.classList.add('active');
     document.body.style.overflow = 'hidden';
